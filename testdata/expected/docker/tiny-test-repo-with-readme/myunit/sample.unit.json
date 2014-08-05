@@ -1,0 +1,1 @@
+{"Name":"myunit","Type":"sample","Repo":"github.com/sourcegraph/tiny-test-repo-with-readme","Globs":null,"Files":null,"Dependencies":[{"name":"foo"}],"Ops":{"depresolve":null,"graph":null}}

@@ -1,0 +1,17 @@
+#!/bin/sh
+
+case $1 in
+    scan)
+        echo '[{"Type":"sample","Name":"myunit","Dependencies":[{"name":"foo"}],"Ops":{"graph":null,"depresolve":null}}]'
+        ;;
+    graph)
+        echo '{"Symbols":[],"Refs":[],"Docs":[]}'
+        ;;
+    depresolve)
+        echo '[{"Raw":{"name":"foo"},"Target":{"ToRepoCloneURL":"https://github.com/example/repo"}}]'
+        ;;
+    *)
+        echo Unknown command: $1 >&2
+        exit 1
+        ;;
+esac
