@@ -1,0 +1,10 @@
+language: go # dummy
+
+before_install:
+  - echo nothing to do
+install:
+  - echo nothing to do
+before_script:
+  - echo nothing to do
+script:
+  - src test -m program
