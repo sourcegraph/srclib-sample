@@ -5,7 +5,7 @@ case $1 in
         echo '[{"Type":"sample","Name":"myunit","Dependencies":[{"name":"foo"}],"Ops":{"graph":null,"depresolve":null}}]'
         ;;
     graph)
-        echo '{"Symbols":[],"Refs":[],"Docs":[]}'
+        echo '{"Defs":[],"Refs":[],"Docs":[]}'
         ;;
     depresolve)
         echo '[{"Raw":{"name":"foo"},"Target":{"ToRepoCloneURL":"https://github.com/example/repo"}}]'
