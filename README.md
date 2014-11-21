@@ -36,6 +36,7 @@ Now try running the tests, in both variants: invoking this toolchain as a
 program and invoking it in a Docker container.
 
 ```
+git submodule update --init # Initializes the testing submodules.
 src test -m docker
 src test -m program
 ```
