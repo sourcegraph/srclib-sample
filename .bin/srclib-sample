@@ -2,13 +2,13 @@
 
 case $1 in
     scan)
-        echo '[{"Type":"sample","Name":"myunit","Dependencies":[{"name":"foo"}],"Ops":{"graph":null,"depresolve":null}}]'
+        echo '[{"Type":"sample","Name":"myunit","Dependencies":[{"name":"mydep"}],"Ops":{"graph":null,"depresolve":null}}]'
         ;;
     graph)
-        echo '{"Defs":[],"Refs":[],"Docs":[]}'
+        echo '{"Defs":[{"Repo":"","UnitType":"sample","Unit":".","Path":"mydef","Name":"mydef","File":"f","DefStart":123,"DefEnd":456,"Exported":true,"Kind":"var","TreePath":"mydef"}],"Refs":[],"Docs":[]}'
         ;;
     depresolve)
-        echo '[{"Raw":{"name":"foo"},"Target":{"ToRepoCloneURL":"https://github.com/example/repo"}}]'
+        echo '[{"Raw":{"name":"mydep"},"Target":{"ToRepoCloneURL":"https://github.com/example/repo"}}]'
         ;;
     *)
         echo Unknown command: $1 >&2
