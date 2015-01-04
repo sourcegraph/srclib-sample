@@ -1,10 +1,26 @@
 #!/bin/sh
 
+scanDir() {
+    dir="."
+    if [ -n "$1" ] ; then
+        dir="$1"
+    fi
+    cd $dir
+    dirname=${PWD##*/}
+    # NOTE: The following command hasn't been tested with BSD find.
+    files=$(find . -maxdepth 1 -regex '\./[^.].*\..*'  -type f  -printf "\"%f\"\n"  | paste -s -d ',')
+    echo "{\"Type\":\"sample\",\"Name\":\"$dirname\",\"Files\":[$files],\"Dependencies\":[{\"name\":\"mydep\"}],\"Ops\":{\"graph\":null,\"depresolve\":null}}"
+}
+
 case $1 in
     scan)
-        # NOTE: The following command hasn't been tested with BSD find.
-        files=$(find . -maxdepth 1 -regex '\./[^.].*\..*'  -type f  -printf "\"%f\"\n"  | paste -s -d ',')
-        echo "[{\"Type\":\"sample\",\"Name\":\"myunit\",\"Files\":[$files],\"Dependencies\":[{\"name\":\"mydep\"}],\"Ops\":{\"graph\":null,\"depresolve\":null}}]"
+        out="["$(scanDir .)
+        # Only scan directories one level deep.
+        for d in $(ls -D) ; do
+            out=$out","$(scanDir $d)
+        done
+        out=$out"]"
+        echo $out
         ;;
     graph)
         # Add the time to the graph output so we can differentiate
