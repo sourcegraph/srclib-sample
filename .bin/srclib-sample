@@ -2,10 +2,15 @@
 
 case $1 in
     scan)
-        echo '[{"Type":"sample","Name":"myunit","Dependencies":[{"name":"mydep"}],"Ops":{"graph":null,"depresolve":null}}]'
+        # NOTE: The following command hasn't been tested with BSD find.
+        files=$(find . -maxdepth 1 -regex '\./[^.].*\..*'  -type f  -printf "\"%f\"\n"  | paste -s -d ',')
+        echo "[{\"Type\":\"sample\",\"Name\":\"myunit\",\"Files\":[$files],\"Dependencies\":[{\"name\":\"mydep\"}],\"Ops\":{\"graph\":null,\"depresolve\":null}}]"
         ;;
     graph)
-        echo '{"Defs":[{"Repo":"","UnitType":"sample","Unit":".","Path":"mydef","Name":"mydef","File":"f","DefStart":123,"DefEnd":456,"Exported":true,"Kind":"var","TreePath":"mydef"}],"Refs":[],"Docs":[]}'
+        # Add the time to the graph output so we can differentiate
+        # between cached and uncached builds.
+        time=$(date +%s%N)
+        echo "{\"Defs\":[{\"Repo\":\"\",\"UnitType\":\"sample\",\"Unit\":\".\",\"Path\":\"mydef\",\"Name\":\"mydef\",\"File\":\"f\",\"DefStart\":123,\"DefEnd\":456,\"Exported\":true,\"Kind\":\"var\",\"TreePath\":\"mydef\",\"Data\":{\"Date\":\"$time\"}],\"Refs\":[],\"Docs\":[]}"
         ;;
     depresolve)
         echo '[{"Raw":{"name":"mydep"},"Target":{"ToRepoCloneURL":"https://github.com/example/repo"}}]'
