@@ -22,7 +22,7 @@ case $1 in
         out="["$(scanDir .)
         # Only scan directories one level deep. 'd' is a directory
         # without a trailing slash.
-        for d in $(find . -type d -maxdepth 1 | awk -F/ '{print $NF}') ; do
+        for d in $(find . -maxdepth 1 -type d | awk -F/ '{print $NF}') ; do
             out=$out","$(scanDir $d)
         done
         out=$out"]"
