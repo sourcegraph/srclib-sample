@@ -29,10 +29,7 @@ case $1 in
         echo $out
         ;;
     graph)
-        # Add the time to the graph output so we can differentiate
-        # between cached and uncached builds.
-        time=$(date +%s%N)
-        echo "{\"Defs\":[{\"Repo\":\"\",\"UnitType\":\"sample\",\"Unit\":\".\",\"Path\":\"mydef\",\"Name\":\"mydef\",\"File\":\"f\",\"DefStart\":123,\"DefEnd\":456,\"Exported\":true,\"Kind\":\"var\",\"TreePath\":\"mydef\",\"Data\":{\"Date\":\"$time\"}}],\"Refs\":[],\"Docs\":[]}"
+        echo "{\"Defs\":[{\"Repo\":\"\",\"UnitType\":\"sample\",\"Unit\":\".\",\"Path\":\"mydef\",\"Name\":\"mydef\",\"File\":\"f\",\"DefStart\":123,\"DefEnd\":456,\"Exported\":true,\"Kind\":\"var\",\"TreePath\":\"mydef\",\"Data\":{}}],\"Refs\":[],\"Docs\":[]}"
         ;;
     depresolve)
         echo '[{"Raw":{"name":"mydep"},"Target":{"ToRepoCloneURL":"https://github.com/example/repo"}}]'
