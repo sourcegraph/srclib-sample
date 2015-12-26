@@ -12,31 +12,21 @@ Then, to set up this toolchain, clone this repository. Then from the directory
 you cloned it to, run:
 
 ```
-src toolchain add sourcegraph.com/sourcegraph/srclib-sample
+mkdir -p ~/.srclib/sourcegraph.com/sourcegraph
+ln -s $PWD ~/.srclib/sourcegraph.com/sourcegraph/srclib-sample
 ```
-
-That adds a symlink to this directory in your SRCLIBPATH.
 
 Now, running `src toolchain list` should show this toolchain
 
 ```
-$ src toolchain list
-PATH                                       TYPE
+$ srclib toolchain list
 ...
-sourcegraph.com/sourcegraph/srclib-sample  program, docker
+sourcegraph.com/sourcegraph/srclib-sample
 ```
 
-Next, build this toolchain's Docker image:
-
-```
-src toolchain build sourcegraph.com/sourcegraph/srclib-sample
-```
-
-Now try running the tests, in both variants: invoking this toolchain as a
-program and invoking it in a Docker container.
+Now try running the tests:
 
 ```
 git submodule update --init # Initializes the testing submodules.
-src test -m docker
-src test -m program
+srclib test
 ```

@@ -1,0 +1,1 @@
+{"Name":"tiny-test-repo-with-readme","Type":"sample","Files":["./README.md"],"Dependencies":[{"name":"mydep"}],"Ops":{"depresolve":null,"graph":null}}
